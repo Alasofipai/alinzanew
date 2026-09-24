@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KTO Partes | Repuestos para motos al por mayor en Colombia</title>
+    <style>
+        /* Variables de color de la marca KTO (Rojo, Oscuro y Blanco) */
+        :root {
+            --primary-color: #d32f2f;
+            --primary-hover: #b71c1c;
+            --dark-color: #1a1a1a;
+            --light-bg: #f5f5f7;
+            --text-color: #333333;
+            --text-muted: #777777;
+            --white: #ffffff;
+            --success-color: #25d366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Barra de anuncio superior */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 8px 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Encabezado Principal */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--dark-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .search-bar {
+            display: flex;
+            width: 45%;
+            max-width: 500px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #dddddd;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .search-bar button {
+            background-color: var(--dark-color);
+            color: var(--white);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .search-bar button:hover {
+            background-color: var(--primary-color);
+        }
+
+        .header-actions a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        .header-actions a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-whatsapp-nav {
+            background-color: var(--success-color);
+            color: white !important;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+
+        /* Menú de Navegación */
+        nav {
+            background-color: var(--dark-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            list-style: none;
+            padding: 0 20px;
+        }
+
+        .nav-container li a {
+            display: block;
+            color: var(--white);
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .nav-container li a:hover, .nav-container li a.active {
+            background-color: var(--primary-color);
+        }
+
+        /* Banner Principal / Hero */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&q=80&w=1200') no-repeat center center/cover;
+            color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+
+        .hero .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            border-radius: 4px;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .hero .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Contenedor de Secciones */
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+        }
+
+        /* Marcas Populares */
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .brand-card {
+            background-color: var(--white);
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+        }
+
+        /* Cuadrícula de Productos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
+            border: 1px solid #eef0f2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            background-color: #f9f9f9;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .product-image img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 3px 8px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            height: 45px;
+            overflow: hidden;
+        }
+
+        .product-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .btn-add {
+            display: block;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .btn-add:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: var(--dark-color);
+            color: #bbbbbb;
+            padding: 40px 20px 20px 20px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            border-bottom: 1px solid #333333;
+            padding-bottom: 30px;
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #bbbbbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            max-width: 1200px;
+            margin: 20px auto 0 auto;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .search-bar {
+                width: 100%;
+            }
+            .nav-container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        🇨🇴 DISTRIBUIDOR MAYORISTA DE REPUESTOS PARA MOTOS EN COLOMBIA - ENVÍOS NACIONALES
+    </div>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">KTO<span>PARTES</span></a>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar repuestos, llantas, accesorios...">
+                <button type="button">Buscar</button>
+            </div>
+
+            <div class="header-actions">
+                <a href="#">Lista de Precios</a>
+                <a href="#" class="btn-whatsapp-nav">WhatsApp Ventas</a>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul class="nav-container">
+            <li><a href="#" class="active">Inicio</a></li>
+            <li><a href="#">Llantas KTO</a></li>
+            <li><a href="#">Repuestos por Marca</a></li>
+            <li><a href="#">Catálogo Digital</a></li>
+            <li><a href="#">Ejecutivos de Venta</a></li>
+            <li><a href="#">Nosotros</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>La Más Amplia Gama de Repuestos al Por Mayor</h1>
+            <p>Abastece tu negocio con llantas, kits de arrastre, balineras y partes originales y homologadas con las mejores tarifas de Colombia.</p>
+            <a href="#" class="btn">Ver Catálogo de Precios</a>
+        </div>
+    </section>
+
+    <main class="main-container">
+
+        <h2 class="section-title">Repuestos por Marca</h2>
+        <div class="brands-grid">
+            <div class="brand-card">BAJAJ</div>
+            <div class="brand-card">YAMAHA</div>
+            <div class="brand-card">HONDA</div>
+            <div class="brand-card">SUZUKI</div>
+            <div class="brand-card">AKT</div>
+            <div class="brand-card">TVs</div>
+        </div>
+
+        <h2 class="section-title">Productos Destacados</h2>
+        <div class="products-grid">
+
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">Mayorista</span>
+                    [Imagen de Abrazadera Plástica Negra]
+                </div>
+                <div class="product-info">
+                    <div>
+                        <h3 class="product-title">Abrazadera Plástica Negra 36mm x 30cm</h3>
+                        <p class="product-meta">Categoría: Accesorios universales</p>
+                    </div>
+                    <a href="#" class="btn-add">Agregar al Pedido</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">Mayorista</span>
+                    [Imagen de Sensor de Temperatura Pulsar]
+                </div>
+                <div class="product-info">
+                    <div>
+                        <h3 class="product-title">Sensor de Temperatura Pulsar 125/160 NS / Discover</h3>
+                        <p class="product-meta">Categoría: Sistema Eléctrico Bajaj</p>
+                    </div>
+                    <a href="#" class="btn-add">Agregar al Pedido</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">Nuevo</span>
+                    [Imagen de Coca Stop Yamaha]
+                </div>
+                <div class="product-info">
+                    <div>
+                        <h3 class="product-title">Coca Stop Yamaha DT125-175K / FZ16 Roja</h3>
+                        <p class="product-meta">Categoría: Componentes de Luces</p>
+                    </div>
+                    <a href="#" class="btn-add">Agregar al Pedido</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-badge">KTO Llantas</span>
+                    [Imagen de Llanta para Moto KTO]
+                </div>
+                <div class="product-info">
+                    <div>
+                        <h3 class="product-title">Llanta de Alta Resistencia KTO - Uso Mayorista</h3>
+                        <p class="product-meta">Categoría: Llantas y Neumáticos</p>
+                    </div>
+                    <a href="#" class="btn-add">Agregar al Pedido</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>KTO Partes</h3>
+                <p>Importadores y distribuidores directos de repuestos de motos en Colombia. Garantía, honradez y cumplimiento.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Enlaces Útiles</h3>
+                <ul>
+                    <li><a href="#">Lista de Precios PDF</a></li>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Trabaja con Nosotros</a></li>
+                    <li><a href="#">Contacto Directo</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Sede Principal</h3>
+                <p>Armenia, Quindío, Colombia<br>
+                Carrera 6 # 5-72, Bodega 4 Vía Jardines<br>
+                WhatsApp: +57 311 752 0692</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 KTO Partes Replica - Solo con fines ilustrativos de diseño.
+        </div>
+    </footer>
+
+</body>
+</html>
